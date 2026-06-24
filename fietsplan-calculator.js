@@ -13,7 +13,58 @@ class FietsplanCalculator extends HTMLElement {
 
     shadow.innerHTML = `
       <style>
-:root {
+  /* ── Reset: block WordPress/site CSS from leaking in ── */
+  :host {
+    all: initial;
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  a { color: inherit; }
+  button { font-family: inherit; }
+  input, select, button {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: inherit !important;
+  }
+  /* Ensure slider thumbs render with our green color */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    background: #669933 !important;
+    border: 2px solid white !important;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2) !important;
+    cursor: pointer !important;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50% !important;
+    background: #669933 !important;
+    border: 2px solid white !important;
+    cursor: pointer !important;
+  }
+  input[type="range"] {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 100% !important;
+    height: 4px !important;
+    border-radius: 2px !important;
+    background: #d8d8d8 !important;
+    outline: none !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+
+:host {
     --groen: #669933;
     --groen-dim: #4d7226;
     --zwart: #282a2b;
