@@ -554,17 +554,21 @@ function bereken() {
   var lease       = looptijd === 36 ? row[1] : row[2];
   var bijtelling  = currentPrijs * 0.07 / 12;
   var wgBedrag    = lease * wgFractie;
+  // Salary sacrifice = deel dat werknemer zelf inlevert (lease minus werkgeversdeel)
+  var salarySacrifice = lease * (1 - wgFractie);
   var lhVoor      = loonheffing(currentLoon);
-  var gecorLoon   = Math.max(4.5, currentLoon - lease + bijtelling);
-  var lhNa        = loonheffing(gecorLoon);
 
-  var netto;
+  var gecorLoon, lhNa, netto;
   if (wgFractie === 1) {
-    // Volledig: werknemer betaalt alleen het belastingeffect van de bijtelling
-    // onafhankelijk van de looptijd of leaseprijs
-    netto = loonheffing(currentLoon + bijtelling) - loonheffing(currentLoon);
+    // Volledig: geen salary sacrifice, loon stijgt alleen met bijtelling
+    gecorLoon = currentLoon + bijtelling;
+    lhNa  = loonheffing(gecorLoon);
+    netto = lhNa - lhVoor;
   } else {
-    netto = lease - (lhVoor - lhNa) - wgBedrag;
+    // Niets/Deels: salary sacrifice = (1 - wgFractie) * lease
+    gecorLoon = Math.max(4.5, currentLoon - salarySacrifice + bijtelling);
+    lhNa  = loonheffing(gecorLoon);
+    netto = salarySacrifice - (lhVoor - lhNa);
   }
 
   var voordeel  = lease - netto;
@@ -580,15 +584,17 @@ function bereken() {
 
   // Detail
   var nettoloopPrive = currentLoon - lhVoor;
-  var nettoloopLease = gecorLoon + bijtelling - lhNa - wgBedrag;
+  // Nettoloon fietsplan = nettoloon prive - netto maandlast (altijd consistent)
+  var nettoloopLease = nettoloopPrive - netto;
+  var gecorLoonDisplay = wgFractie === 1 ? currentLoon + bijtelling : gecorLoon;
 
   set('d-loon-prive',      fmt(currentLoon, 0));
   set('d-loon-lease',      fmt(currentLoon, 0));
-  set('d-lease',           fmtNeg(lease));
-  set('d-bijtelling',      '+\u202f' + fmt(bijtelling));
+  set('d-lease',           wgFractie === 1 ? '—' : fmtNeg(salarySacrifice));
+  set('d-bijtelling',      '+ ' + fmt(bijtelling));
   set('d-wg',              wgBedrag > 0 ? fmtNeg(wgBedrag) : '—');
   set('d-brutoloon-prive', fmt(currentLoon, 0));
-  set('d-brutoloon-lease', fmt(gecorLoon + bijtelling, 0));
+  set('d-brutoloon-lease', fmt(gecorLoonDisplay, 0));
   set('d-lh-prive',        fmtNeg(lhVoor));
   set('d-lh-lease',        fmtNeg(lhNa));
   set('d-netto-prive',     fmt(nettoloopPrive, 0));
