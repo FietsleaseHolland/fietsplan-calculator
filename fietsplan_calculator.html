@@ -20,17 +20,15 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { background: transparent; }
+  html, body { background: transparent; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     color: var(--zwart);
     padding: 0;
-    margin: 0;
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* ── Layout ── */
   .calc {
     background: var(--wit);
     border-radius: var(--radius-lg);
@@ -50,9 +48,9 @@
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
+    background: #f5f9f0;
   }
 
-  /* ── Section title ── */
   .sec {
     font-size: 0.6rem;
     font-weight: 700;
@@ -66,7 +64,6 @@
   }
   .sec::after { content: ''; flex: 1; height: 1px; background: var(--grijs-lijn); }
 
-  /* ── Fields ── */
   .field { margin-bottom: 1.1rem; }
   .field:last-of-type { margin-bottom: 0; }
 
@@ -84,7 +81,6 @@
     flex: 1;
   }
 
-  /* ── Price input + slider ── */
   .prijs-input-wrap {
     display: flex;
     align-items: center;
@@ -123,14 +119,10 @@
     white-space: nowrap;
   }
 
-  /* ── Type buttons ── */
-  .type-group {
-    display: flex;
-    gap: 0.4rem;
-  }
+  .type-group { display: flex; gap: 0.4rem; }
   .type-btn {
     flex: 1;
-    padding: 0.5rem 0.25rem;
+    padding: 0.5rem 0.4rem;
     font-size: 0.78rem;
     font-weight: 600;
     color: var(--groen);
@@ -141,15 +133,16 @@
     transition: all 0.15s;
     font-family: inherit;
     text-align: center;
+    white-space: nowrap;
   }
   .type-btn:hover { border-color: var(--groen); background: var(--groen-licht); }
   .type-btn.active { background: var(--groen); color: var(--wit); border-color: var(--groen); }
 
-  /* ── Looptijd toggle ── */
   .toggle-group {
     display: flex;
     border: 1.5px solid var(--grijs-lijn);
     border-radius: var(--radius-sm);
+    overflow: hidden;
   }
   .toggle-btn {
     flex: 1;
@@ -167,7 +160,6 @@
   .toggle-btn:last-child { border-right: none; }
   .toggle-btn.active { background: var(--groen); color: var(--wit); }
 
-  /* ── Slider ── */
   input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
@@ -207,7 +199,6 @@
     color: var(--grijs-mid);
   }
 
-  /* ── Field row ── */
   .field-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -215,7 +206,6 @@
     margin-bottom: 1.1rem;
   }
 
-  /* ── Results hero ── */
   .hero {
     text-align: center;
     padding-bottom: 1rem;
@@ -237,20 +227,15 @@
     letter-spacing: -0.03em;
     line-height: 1;
   }
-  .hero-sub {
-    font-size: 0.72rem;
-    color: var(--grijs-mid);
-    margin-top: 0.25rem;
-  }
+  .hero-sub { font-size: 0.72rem; color: var(--grijs-mid); margin-top: 0.25rem; }
 
-  /* ── Summary rows ── */
   .rows { margin-bottom: 0.75rem; }
   .row {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     padding: 0.55rem 0;
-    border-bottom: 1px solid #f3f3f1;
+    border-bottom: 1px solid #e8f0de;
     gap: 0.5rem;
   }
   .row:last-child { border-bottom: none; }
@@ -260,7 +245,6 @@
   .row.accent .row-label { color: var(--zwart); font-weight: 600; }
   .row.accent .row-value { color: var(--groen-dark); }
 
-  /* ── Detail breakdown toggle ── */
   .detail-toggle {
     display: flex;
     align-items: center;
@@ -276,17 +260,12 @@
     margin-bottom: 0.75rem;
   }
   .detail-toggle:hover { color: var(--groen-dark); }
-  .detail-arrow {
-    display: inline-block;
-    transition: transform 0.2s;
-    font-size: 0.7rem;
-  }
+  .detail-arrow { display: inline-block; transition: transform 0.2s; font-size: 0.7rem; }
   .detail-arrow.open { transform: rotate(90deg); }
 
-  /* ── Detail table ── */
   .detail-table {
     display: none;
-    background: var(--grijs-zacht);
+    background: #eaf3e0;
     border-radius: var(--radius-sm);
     border: 1px solid var(--grijs-lijn);
     overflow: hidden;
@@ -299,10 +278,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 0.5rem 0.75rem;
-    background: var(--grijs-lijn);
+    background: #d4e8c0;
     font-size: 0.65rem;
     font-weight: 700;
-    color: #666;
+    color: #555;
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
@@ -312,19 +291,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 0.45rem 0.75rem;
-    border-top: 1px solid var(--grijs-lijn);
+    border-top: 1px solid #d4e8c0;
   }
-  .dt-row:first-of-type { border-top: none; }
   .dt-row .dt-label { color: #555; }
   .dt-row .dt-val { text-align: right; color: var(--zwart); font-weight: 600; }
   .dt-row .dt-val.neg { color: var(--groen-dark); }
-  .dt-row.dt-total {
-    background: white;
-    font-weight: 700;
-  }
+  .dt-row.dt-total { background: white; font-weight: 700; }
   .dt-row.dt-total .dt-label { color: var(--zwart); font-weight: 700; }
 
-  /* ── Disclaimer ── */
   .foot {
     font-size: 0.65rem;
     color: #bbb;
@@ -334,9 +308,9 @@
     margin-top: auto;
   }
 
-  /* ── Empty/error states ── */
   .hero-value.empty { color: #d0d0d0; }
   .row-value.empty { color: #d0d0d0; }
+
   .error {
     margin-top: 0.75rem;
     background: #fff8e6;
@@ -348,57 +322,12 @@
     display: none;
   }
 
-  /* ── Responsive ── */
   @media (max-width: 600px) {
-    .calc {
-      grid-template-columns: 1fr;
-      position: relative;
-      padding-bottom: 110px; /* space for sticky footer */
-    }
-    .col-in {
-      border-right: none;
-      border-bottom: 1px solid var(--grijs-lijn);
-      padding: 1.1rem;
-    }
-    .col-out {
-      padding: 1.1rem;
-    }
-    /* Sticky result on mobile */
-    .sticky-result {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--wit);
-      border-top: 2px solid var(--groen);
-      padding: 0.75rem 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 -4px 16px rgba(0,0,0,0.10);
-      z-index: 100;
-    }
-    .sticky-result .s-label {
-      font-size: 0.72rem;
-      color: #666;
-    }
-    .sticky-result .s-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--groen-dark);
-      letter-spacing: -0.02em;
-    }
-    .sticky-result .s-sub {
-      font-size: 0.65rem;
-      color: var(--grijs-mid);
-    }
-    /* Hide big hero on mobile, show sticky instead */
-    .hero { display: none; }
+    .calc { grid-template-columns: 1fr; }
+    .col-in { border-right: none; border-bottom: 1px solid var(--grijs-lijn); padding: 1.1rem; }
+    .col-out { padding: 1.1rem; }
+    .hero-value { font-size: 1.8rem; }
     .field-row { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (min-width: 601px) {
-    .sticky-result { display: none; }
   }
 </style>
 </head>
@@ -406,25 +335,23 @@
 
 <div class="calc">
 
-  <!-- ── Invoer ── -->
   <div class="col-in">
     <div class="sec">Invoer</div>
 
-    <div class="field-row">
-      <div>
-        <div class="field-top"><label>Fietstype</label></div>
-        <div class="type-group">
-          <button class="type-btn" data-type="ebike">E-Bike</button>
-          <button class="type-btn" data-type="stad">Stadsfiets</button>
-          <button class="type-btn active" data-type="sport">Sportfiets</button>
-        </div>
+    <div class="field">
+      <div class="field-top"><label>Fietstype</label></div>
+      <div class="type-group">
+        <button class="type-btn" data-type="ebike">E-Bike</button>
+        <button class="type-btn" data-type="stad">Stadsfiets</button>
+        <button class="type-btn active" data-type="sport">Sportfiets</button>
       </div>
-      <div>
-        <div class="field-top"><label>Looptijd</label></div>
-        <div class="toggle-group">
-          <button class="toggle-btn" data-val="36">36 mnd</button>
-          <button class="toggle-btn active" data-val="48">48 mnd</button>
-        </div>
+    </div>
+
+    <div class="field">
+      <div class="field-top"><label>Looptijd</label></div>
+      <div class="toggle-group">
+        <button class="toggle-btn" data-val="36">36 mnd</button>
+        <button class="toggle-btn active" data-val="48">48 mnd</button>
       </div>
     </div>
 
@@ -456,15 +383,12 @@
     </div>
 
     <div class="field">
-      <div class="field-top">
-        <label>Werkgeversbijdrage / mnd</label>
-        <div class="prijs-input-wrap">
-          <span>€</span>
-          <input type="number" id="wg-input" min="0" max="200" step="5" value="0">
-        </div>
+      <div class="field-top"><label>Mijn werkgever betaalt</label></div>
+      <div class="type-group">
+        <button class="type-btn wg-btn active" data-wg="0">Niets</button>
+        <button class="type-btn wg-btn" data-wg="0.5">Deels (50%)</button>
+        <button class="type-btn wg-btn" data-wg="1">Volledig</button>
       </div>
-      <input type="range" id="wg-slider" min="0" max="200" step="5" value="0">
-      <div class="slider-labels"><span>€ 0</span><span>€ 200</span></div>
     </div>
 
     <div class="error" id="error-msg">
@@ -472,7 +396,6 @@
     </div>
   </div>
 
-  <!-- ── Resultaat ── -->
   <div class="col-out">
     <div class="sec">Resultaat</div>
 
@@ -500,17 +423,14 @@
       </div>
     </div>
 
-    <!-- Detail breakdown -->
     <button class="detail-toggle" id="detail-toggle" onclick="toggleDetail()">
       <span class="detail-arrow" id="detail-arrow">▶</span>
-      Bekijk volledige berekening
+      <span>Bekijk volledige berekening</span>
     </button>
 
     <div class="detail-table" id="detail-table">
       <div class="dt-header">
-        <span>Post</span>
-        <span>Privé aankoop</span>
-        <span>Fietsplan</span>
+        <span>Post</span><span>Privé aankoop</span><span>Fietsplan</span>
       </div>
       <div class="dt-row">
         <span class="dt-label">Bruto maandloon</span>
@@ -525,7 +445,7 @@
       <div class="dt-row">
         <span class="dt-label">Bijtelling (7%)</span>
         <span class="dt-val">—</span>
-        <span class="dt-val neg" id="d-bijtelling">—</span>
+        <span class="dt-val" id="d-bijtelling">—</span>
       </div>
       <div class="dt-row">
         <span class="dt-label">Werkgeversbijdrage</span>
@@ -554,8 +474,6 @@
 
 </div>
 
-
-
 <script>
 const EBIKE  = [[899, 68.95, 62.95], [949, 70.95, 63.95], [999, 71.95, 65.95], [1049, 74.95, 67.95], [1099, 76.95, 69.95], [1149, 77.95, 70.95], [1199, 79.95, 71.95], [1249, 81.95, 73.95], [1299, 82.95, 74.95], [1349, 84.95, 76.95], [1399, 86.95, 77.95], [1449, 87.95, 79.95], [1499, 89.95, 80.95], [1549, 92.95, 82.95], [1599, 94.95, 84.95], [1649, 95.95, 85.95], [1699, 97.95, 87.95], [1749, 99.95, 88.95], [1799, 100.95, 89.95], [1849, 102.95, 91.95], [1899, 104.95, 92.95], [1949, 105.95, 94.95], [1999, 107.95, 95.95], [2049, 112.95, 99.95], [2099, 114.95, 101.95], [2149, 116.95, 103.95], [2199, 117.95, 104.95], [2249, 119.95, 106.95], [2299, 121.95, 107.95], [2349, 122.95, 108.95], [2399, 124.95, 109.95], [2449, 126.95, 111.95], [2499, 127.95, 113.95], [2549, 129.95, 115.95], [2599, 132.95, 116.95], [2649, 133.95, 118.95], [2699, 135.95, 119.95], [2749, 137.95, 121.95], [2799, 138.95, 122.95], [2849, 139.95, 123.95], [2899, 142.95, 125.95], [2949, 143.95, 126.95], [2999, 145.95, 128.95], [3049, 149.95, 132.95], [3099, 152.95, 134.95], [3149, 153.95, 135.95], [3199, 155.95, 137.95], [3249, 157.95, 138.95], [3299, 158.95, 139.95], [3349, 160.95, 141.95], [3399, 162.95, 142.95], [3449, 164.95, 144.95], [3499, 165.95, 145.95], [3549, 167.95, 146.95], [3599, 169.95, 148.95], [3649, 170.95, 149.95], [3699, 172.95, 151.95], [3749, 174.95, 152.95], [3799, 175.95, 154.95], [3849, 177.95, 155.95], [3899, 179.95, 156.95], [3949, 180.95, 158.95], [3999, 182.95, 159.95], [4049, 188.95, 165.95], [4099, 189.95, 166.95], [4149, 191.95, 167.95], [4199, 193.95, 169.95], [4249, 194.95, 170.95], [4299, 196.95, 172.95], [4349, 198.95, 173.95], [4399, 199.95, 174.95], [4449, 201.95, 176.95], [4499, 203.95, 177.95], [4549, 204.95, 179.95], [4599, 206.95, 180.95], [4649, 208.95, 181.95], [4699, 210.95, 183.95], [4749, 211.95, 184.95], [4799, 213.95, 186.95], [4849, 215.95, 187.95], [4899, 216.95, 189.95], [4949, 218.95, 190.95], [4999, 220.95, 191.95], [5049, 228.95, 199.95], [5099, 229.95, 201.95], [5149, 231.95, 202.95], [5199, 233.95, 203.95], [5249, 235.95, 205.95], [5299, 236.95, 206.95], [5349, 238.95, 208.95], [5399, 240.95, 209.95], [5449, 241.95, 210.95], [5499, 243.95, 212.95], [5549, 245.95, 213.95], [5599, 246.95, 215.95], [5649, 248.95, 216.95], [5699, 250.95, 218.95], [5749, 251.95, 219.95], [5799, 253.95, 220.95], [5849, 255.95, 222.95], [5899, 256.95, 223.95], [5949, 258.95, 225.95], [5999, 260.95, 226.95], [6049, 262.95, 228.95], [6099, 264.95, 230.95], [6149, 266.95, 231.95], [6199, 268.95, 233.95], [6249, 269.95, 234.95], [6299, 271.95, 236.95], [6349, 273.95, 237.95], [6399, 274.95, 238.95], [6449, 276.95, 240.95], [6499, 278.95, 241.95], [6549, 279.95, 243.95], [6599, 281.95, 244.95], [6649, 283.95, 245.95], [6699, 284.95, 247.95], [6749, 286.95, 248.95], [6799, 288.95, 250.95], [6849, 289.95, 251.95], [6899, 291.95, 252.95], [6949, 293.95, 254.95], [6999, 294.95, 255.95], [7049, 299.95, 259.95], [7099, 300.95, 261.95], [7149, 302.95, 262.95], [7199, 304.95, 264.95], [7249, 305.95, 265.95], [7299, 307.95, 266.95], [7349, 308.95, 267.95], [7399, 310.95, 269.95], [7449, 311.95, 270.95], [7499, 313.95, 271.95], [7549, 322.95, 280.95], [7599, 324.95, 281.95], [7649, 325.95, 283.95], [7699, 327.95, 284.95], [7749, 328.95, 285.95], [7799, 330.95, 286.95], [7849, 331.95, 287.95], [7899, 333.95, 289.95], [7949, 334.95, 290.95], [7999, 336.95, 291.95]];
 const STAD   = [[449, 47.95, 44.95], [499, 49.95, 45.95], [549, 52.95, 48.95], [599, 53.95, 49.95], [649, 55.95, 50.95], [699, 57.95, 52.95], [749, 58.95, 53.95], [799, 59.95, 55.95], [849, 62.95, 56.95], [899, 63.95, 57.95], [949, 65.95, 59.95], [999, 67.95, 60.95], [1049, 69.95, 63.95], [1099, 71.95, 64.95], [1149, 73.95, 66.95], [1199, 75.95, 67.95], [1249, 76.95, 68.95], [1299, 78.95, 69.95], [1349, 79.95, 71.95], [1399, 81.95, 73.95], [1449, 83.95, 74.95], [1499, 85.95, 76.95], [1549, 88.95, 78.95], [1599, 89.95, 79.95], [1649, 91.95, 81.95], [1699, 93.95, 82.95], [1749, 94.95, 84.95], [1799, 96.95, 85.95], [1849, 98.95, 86.95], [1899, 99.95, 88.95], [1949, 101.95, 89.95], [1999, 103.95, 91.95], [2049, 108.95, 96.95], [2099, 109.95, 97.95], [2149, 111.95, 98.95], [2199, 113.95, 99.95], [2249, 115.95, 101.95], [2299, 116.95, 103.95], [2349, 118.95, 104.95], [2399, 120.95, 105.95], [2449, 121.95, 107.95], [2499, 123.95, 108.95], [2549, 125.95, 110.95], [2599, 127.95, 112.95], [2649, 129.95, 113.95], [2699, 131.95, 115.95], [2749, 132.95, 116.95], [2799, 134.95, 118.95], [2849, 136.95, 119.95], [2899, 137.95, 120.95], [2949, 139.95, 122.95], [2999, 141.95, 123.95], [3049, 146.95, 128.95], [3099, 147.95, 129.95], [3149, 149.95, 131.95], [3199, 151.95, 132.95], [3249, 152.95, 134.95], [3299, 154.95, 135.95], [3349, 156.95, 136.95], [3399, 157.95, 138.95], [3449, 159.95, 139.95], [3499, 161.95, 141.95], [3549, 163.95, 142.95], [3599, 164.95, 144.95], [3649, 166.95, 145.95], [3699, 168.95, 146.95], [3749, 169.95, 148.95], [3799, 171.95, 149.95], [3849, 173.95, 151.95], [3899, 174.95, 152.95], [3949, 176.95, 153.95], [3999, 178.95, 155.95], [4049, 181.95, 158.95], [4099, 183.95, 159.95], [4149, 185.95, 161.95], [4199, 186.95, 162.95], [4249, 188.95, 164.95], [4299, 190.95, 165.95], [4349, 191.95, 167.95], [4399, 193.95, 168.95], [4449, 195.95, 169.95], [4499, 196.95, 171.95]];
@@ -564,59 +482,59 @@ const LOONHEFFING = [[4.5, 0], [9, 0], [13.5, 0], [18, 0], [22.5, 0], [27, 0], [
 
 const RANGES = { ebike: EBIKE, stad: STAD, sport: SPORT };
 
-let looptijd = 48;
+let looptijd    = 48;
 let currentType = 'sport';
 let currentPrijs = 3199;
-let currentLoon = 3000;
-let currentWg = 0;
+let currentLoon  = 3000;
+let wgFractie    = 0;
 
-function fmt(v, dec=2) {
+function fmt(v, dec) {
+  if (dec === undefined) dec = 2;
   return '\u20ac\u202f' + v.toFixed(dec).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
-function fmtNeg(v) {
-  return '- ' + fmt(v);
-}
-function pct(v) { return (v*100).toFixed(1).replace('.',',') + '%'; }
+function fmtNeg(v) { return '- ' + fmt(v); }
+function pct(v) { return (v * 100).toFixed(1).replace('.', ',') + '%'; }
 
 function lhLookup(val) {
-  let lo = 0, hi = LOONHEFFING.length - 1;
+  var lo = 0, hi = LOONHEFFING.length - 1;
   while (lo < hi) {
-    const mid = (lo + hi + 1) >> 1;
+    var mid = (lo + hi + 1) >> 1;
     if (LOONHEFFING[mid][0] <= val) lo = mid; else hi = mid - 1;
   }
   return LOONHEFFING[lo][1];
 }
+
 function loonheffing(loon) {
-  const MAX = 11092.5;
+  var MAX = 11092.5;
   if (loon >= MAX) return lhLookup(MAX) + (loon - MAX) * 0.495;
   return lhLookup(Math.max(4.5, loon));
 }
 
-function getPrices() { return RANGES[currentType].map(r => r[0]); }
+function getPrices() { return RANGES[currentType].map(function(r) { return r[0]; }); }
 
 function updatePrijsSlider() {
-  const prices = getPrices();
-  const slider = document.getElementById('prijs-slider');
+  var prices = getPrices();
+  var slider = document.getElementById('prijs-slider');
   slider.max = prices.length - 1;
-  let idx = prices.findIndex(p => p >= currentPrijs);
+  var idx = prices.findIndex(function(p) { return p >= currentPrijs; });
   if (idx < 0) idx = prices.length - 1;
   slider.value = idx;
   currentPrijs = prices[idx];
   document.getElementById('prijs-input').value = currentPrijs;
   document.getElementById('prijs-min').textContent = fmt(prices[0], 0);
-  document.getElementById('prijs-max').textContent = fmt(prices[prices.length-1], 0);
+  document.getElementById('prijs-max').textContent = fmt(prices[prices.length - 1], 0);
 }
 
 function set(id, val) {
-  const el = document.getElementById(id);
+  var el = document.getElementById(id);
   if (!el) return;
   el.textContent = val;
   el.classList.remove('empty');
 }
 
 function setEmpty() {
-  ['r-netto','r-lease','r-voordeel','r-besparing'].forEach(id => {
-    const el = document.getElementById(id);
+  ['r-netto', 'r-lease', 'r-voordeel', 'r-besparing'].forEach(function(id) {
+    var el = document.getElementById(id);
     if (!el) return;
     el.textContent = '—';
     el.classList.add('empty');
@@ -624,66 +542,75 @@ function setEmpty() {
 }
 
 function bereken() {
-  const tbl = RANGES[currentType];
-  const row = tbl.find(r => r[0] === currentPrijs);
-  const err = document.getElementById('error-msg');
-
+  var tbl = RANGES[currentType];
+  var row = null;
+  for (var i = 0; i < tbl.length; i++) {
+    if (tbl[i][0] === currentPrijs) { row = tbl[i]; break; }
+  }
+  var err = document.getElementById('error-msg');
   if (!row) { err.style.display = 'block'; setEmpty(); return; }
   err.style.display = 'none';
 
-  const lease      = looptijd === 36 ? row[1] : row[2];
-  const bijtelling = currentPrijs * 0.07 / 12;
-  const lhVoor     = loonheffing(currentLoon);
-  const gecorLoon  = Math.max(4.5, currentLoon - lease + bijtelling);
-  const lhNa       = loonheffing(gecorLoon);
-  const netto      = lease - (lhVoor - lhNa) - currentWg;
-  const voordeel   = lease - netto;
-  const besparing  = voordeel * looptijd;
+  var lease       = looptijd === 36 ? row[1] : row[2];
+  var bijtelling  = currentPrijs * 0.07 / 12;
+  var wgBedrag    = lease * wgFractie;
+  var lhVoor      = loonheffing(currentLoon);
+  var gecorLoon   = Math.max(4.5, currentLoon - lease + bijtelling);
+  var lhNa        = loonheffing(gecorLoon);
 
-  // Summary
-  set('r-netto',    fmt(netto));
-  set('r-lease',    fmt(lease));
-  set('r-lease-sub', looptijd + ' mnd · incl. BTW');
-  set('r-voordeel', fmt(voordeel));
+  var netto;
+  if (wgFractie === 1) {
+    // Volledig: werknemer betaalt alleen het belastingeffect van de bijtelling
+    // onafhankelijk van de looptijd of leaseprijs
+    netto = loonheffing(currentLoon + bijtelling) - loonheffing(currentLoon);
+  } else {
+    netto = lease - (lhVoor - lhNa) - wgBedrag;
+  }
+
+  var voordeel  = lease - netto;
+  var besparing = voordeel * looptijd;
+
+  set('r-netto',       fmt(netto));
+  set('r-lease',       fmt(lease));
+  set('r-lease-sub',   looptijd + ' mnd \u00b7 incl. BTW');
+  set('r-voordeel',    fmt(voordeel));
   set('r-voordeel-sub', pct(voordeel / lease));
-  set('r-besparing', fmt(besparing, 0));
+  set('r-besparing',   fmt(besparing, 0));
   set('r-besparing-sub', looptijd + ' maanden');
 
-  // Sticky mobile
-  // Detail breakdown
-  const nettoloopPrive = currentLoon - lhVoor;
-  const nettoloopLease = gecorLoon + bijtelling - lhNa - currentWg;
+  // Detail
+  var nettoloopPrive = currentLoon - lhVoor;
+  var nettoloopLease = gecorLoon + bijtelling - lhNa - wgBedrag;
 
-  set('d-loon-prive',     fmt(currentLoon, 0));
-  set('d-loon-lease',     fmt(currentLoon, 0));
-  set('d-lease',          fmtNeg(lease));
-  set('d-bijtelling',     '+\u202f' + fmt(bijtelling));
-  set('d-wg',             currentWg > 0 ? '+\u202f' + fmt(currentWg) : '—');
+  set('d-loon-prive',      fmt(currentLoon, 0));
+  set('d-loon-lease',      fmt(currentLoon, 0));
+  set('d-lease',           fmtNeg(lease));
+  set('d-bijtelling',      '+\u202f' + fmt(bijtelling));
+  set('d-wg',              wgBedrag > 0 ? fmtNeg(wgBedrag) : '—');
   set('d-brutoloon-prive', fmt(currentLoon, 0));
   set('d-brutoloon-lease', fmt(gecorLoon + bijtelling, 0));
-  set('d-lh-prive',       fmtNeg(lhVoor));
-  set('d-lh-lease',       fmtNeg(lhNa));
-  set('d-netto-prive',    fmt(nettoloopPrive, 0));
-  set('d-netto-lease',    fmt(nettoloopLease, 0));
+  set('d-lh-prive',        fmtNeg(lhVoor));
+  set('d-lh-lease',        fmtNeg(lhNa));
+  set('d-netto-prive',     fmt(nettoloopPrive, 0));
+  set('d-netto-lease',     fmt(nettoloopLease, 0));
 }
 
 function toggleDetail() {
-  const table = document.getElementById('detail-table');
-  const arrow = document.getElementById('detail-arrow');
-  const btn   = document.getElementById('detail-toggle');
-  const open  = table.classList.toggle('visible');
+  var table = document.getElementById('detail-table');
+  var arrow = document.getElementById('detail-arrow');
+  var btn   = document.getElementById('detail-toggle');
+  var open  = table.classList.toggle('visible');
   arrow.classList.toggle('open', open);
-  btn.querySelector('span:last-child') && (btn.lastChild.textContent = open ? ' Verberg berekening' : ' Bekijk volledige berekening');
-  // Report new height immediately and after render
+  var span  = btn.querySelector('span:last-child');
+  if (span) span.textContent = open ? 'Verberg berekening' : 'Bekijk volledige berekening';
   reportHeight();
-  setTimeout(reportHeight, 50);
   setTimeout(reportHeight, 200);
 }
 
-// ── Events ──
-document.querySelectorAll('.type-btn').forEach(btn => {
+// Type buttons
+document.querySelectorAll('.type-btn:not(.wg-btn)').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.type-btn:not(.wg-btn)').forEach(function(b) { b.classList.remove('active'); });
     this.classList.add('active');
     currentType = this.dataset.type;
     updatePrijsSlider();
@@ -691,43 +618,60 @@ document.querySelectorAll('.type-btn').forEach(btn => {
   });
 });
 
-document.querySelectorAll('.toggle-btn').forEach(btn => {
+// Looptijd buttons
+document.querySelectorAll('.toggle-btn').forEach(function(btn) {
   btn.addEventListener('click', function() {
-    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.toggle-btn').forEach(function(b) { b.classList.remove('active'); });
     this.classList.add('active');
     looptijd = parseInt(this.dataset.val);
     bereken();
   });
 });
 
-// Slider → input sync
+// WG buttons
+document.querySelectorAll('.wg-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.wg-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    wgFractie = parseFloat(this.dataset.wg);
+    bereken();
+  });
+});
+
+// Prijs slider
 document.getElementById('prijs-slider').addEventListener('input', function() {
-  const prices = getPrices();
+  var prices = getPrices();
   currentPrijs = prices[parseInt(this.value)];
   document.getElementById('prijs-input').value = currentPrijs;
   bereken();
 });
 
-// Input → slider sync
+// Prijs input
 document.getElementById('prijs-input').addEventListener('change', function() {
-  let val = parseInt(this.value);
-  const prices = getPrices();
-  // Snap to nearest valid price
-  let idx = prices.reduce((best, p, i) => Math.abs(p - val) < Math.abs(prices[best] - val) ? i : best, 0);
+  var val = parseInt(this.value);
+  var prices = getPrices();
+  var idx = 0;
+  var best = Math.abs(prices[0] - val);
+  for (var i = 1; i < prices.length; i++) {
+    var diff = Math.abs(prices[i] - val);
+    if (diff < best) { best = diff; idx = i; }
+  }
   currentPrijs = prices[idx];
   this.value = currentPrijs;
   document.getElementById('prijs-slider').value = idx;
   bereken();
 });
 
+// Loon slider
 document.getElementById('loon-slider').addEventListener('input', function() {
   currentLoon = parseInt(this.value);
   document.getElementById('loon-input').value = currentLoon;
   bereken();
 });
 
+// Loon input
 document.getElementById('loon-input').addEventListener('change', function() {
-  let val = Math.min(10000, Math.max(1500, Math.round(parseInt(this.value) / 50) * 50));
+  var val = Math.min(10000, Math.max(1500, Math.round(parseInt(this.value) / 50) * 50));
   if (isNaN(val)) val = 3000;
   currentLoon = val;
   this.value = val;
@@ -735,47 +679,26 @@ document.getElementById('loon-input').addEventListener('change', function() {
   bereken();
 });
 
-document.getElementById('wg-slider').addEventListener('input', function() {
-  currentWg = parseInt(this.value);
-  document.getElementById('wg-input').value = currentWg;
-  bereken();
-});
-
-document.getElementById('wg-input').addEventListener('change', function() {
-  let val = Math.min(200, Math.max(0, Math.round(parseInt(this.value) / 5) * 5));
-  if (isNaN(val)) val = 0;
-  currentWg = val;
-  this.value = val;
-  document.getElementById('wg-slider').value = val;
-  bereken();
-});
-
-// ── Init ──
-updatePrijsSlider();
-bereken();
-
-// ── Report height to parent (iframe resize) ──
+// Height reporting
 function reportHeight() {
-  const calc = document.querySelector('.calc');
+  var calc = document.querySelector('.calc');
   if (!calc) return;
-  const h = calc.getBoundingClientRect().bottom + window.scrollY + 8;
-  try { window.parent.postMessage({ type: 'flc-height', height: Math.ceil(h) }, '*'); } catch(e) {}
+  var h = Math.ceil(calc.getBoundingClientRect().bottom) + 8;
+  try { window.parent.postMessage({ type: 'flc-height', height: h }, '*'); } catch(e) {}
 }
 
+// Init
+updatePrijsSlider();
+bereken();
 reportHeight();
-setTimeout(reportHeight, 100);
-setTimeout(reportHeight, 400);
+setTimeout(reportHeight, 200);
+setTimeout(reportHeight, 600);
 
-// Watch for ANY size change in the calc element
 if (window.ResizeObserver) {
-  const ro = new ResizeObserver(() => {
+  new ResizeObserver(function() {
     reportHeight();
-    // Also report after animation settles
-    setTimeout(reportHeight, 50);
     setTimeout(reportHeight, 200);
-    setTimeout(reportHeight, 400);
-  });
-  ro.observe(document.querySelector('.calc'));
+  }).observe(document.querySelector('.calc'));
 }
 </script>
 </body>
