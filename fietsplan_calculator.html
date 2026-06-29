@@ -28,7 +28,6 @@
     margin: 0;
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
-    overflow: hidden;
   }
 
   /* ── Layout ── */
@@ -151,7 +150,6 @@
     display: flex;
     border: 1.5px solid var(--grijs-lijn);
     border-radius: var(--radius-sm);
-    overflow: hidden;
   }
   .toggle-btn {
     flex: 1;
@@ -676,6 +674,10 @@ function toggleDetail() {
   const open  = table.classList.toggle('visible');
   arrow.classList.toggle('open', open);
   btn.querySelector('span:last-child') && (btn.lastChild.textContent = open ? ' Verberg berekening' : ' Bekijk volledige berekening');
+  // Report new height immediately and after render
+  reportHeight();
+  setTimeout(reportHeight, 50);
+  setTimeout(reportHeight, 200);
 }
 
 // ── Events ──
@@ -754,17 +756,26 @@ bereken();
 
 // ── Report height to parent (iframe resize) ──
 function reportHeight() {
-  const h = document.documentElement.scrollHeight;
-  try { window.parent.postMessage({ type: 'flc-height', height: h }, '*'); } catch(e) {}
+  const calc = document.querySelector('.calc');
+  if (!calc) return;
+  const h = calc.getBoundingClientRect().bottom + window.scrollY + 8;
+  try { window.parent.postMessage({ type: 'flc-height', height: Math.ceil(h) }, '*'); } catch(e) {}
 }
-// Report on load and whenever content changes
+
 reportHeight();
 setTimeout(reportHeight, 100);
 setTimeout(reportHeight, 400);
 
-// Watch for DOM changes (detail expand/collapse)
+// Watch for ANY size change in the calc element
 if (window.ResizeObserver) {
-  new ResizeObserver(reportHeight).observe(document.body);
+  const ro = new ResizeObserver(() => {
+    reportHeight();
+    // Also report after animation settles
+    setTimeout(reportHeight, 50);
+    setTimeout(reportHeight, 200);
+    setTimeout(reportHeight, 400);
+  });
+  ro.observe(document.querySelector('.calc'));
 }
 </script>
 </body>
